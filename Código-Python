@@ -1,43 +1,11 @@
 import webbrowser
+import os
 
 # Dicionário de perguntas e respostas detalhadas
 faq = {
     "Quem escreveu 'Dom Casmurro'?": "Machado de Assis, um dos maiores escritores da literatura brasileira, publicou 'Dom Casmurro' em 1899. A obra explora temas como ciúmes e traição, através da narrativa de Bentinho, que desconfia da fidelidade de sua esposa Capitu.",
-    "Qual é o tema principal de 'O Pequeno Príncipe'?": "A importância da amizade e da inocência é central em 'O Pequeno Príncipe', escrito por Antoine de Saint-Exupéry. A história, através de encontros com diversas figuras, reflete sobre a visão adulta e a simplicidade da infância.",
-    "Quem é o autor de '1984'?": "George Orwell escreveu '1984' em 1949, uma obra distópica que critica a opressão totalitária e a vigilância do Estado, através da vida de Winston Smith em uma sociedade controlada pela ideologia do Partido.",
-    "Qual é o título da obra que conta a história de um jovem que luta contra a opressão em uma sociedade distópica, escrito por Suzanne Collins?": "'Jogos Vorazes' é a obra de Suzanne Collins que retrata Katniss Everdeen, uma jovem forçada a participar de um jogo mortal que desafia a tirania de seu governo.",
-    "Em que época foi escrito 'Os Lusíadas'?": "'Os Lusíadas', escrito por Luís de Camões no século XVI, é um épico que narra a viagem de Vasco da Gama à Índia e explora a grandeza dos feitos portugueses durante as navegações.",
-    "Qual romance é conhecido por sua crítica à sociedade vitoriana e foi escrito por Charles Dickens?": "Oliver Twist, publicado em 1837, é um romance de Charles Dickens que denuncia a exploração das crianças na sociedade vitoriana através da vida do órfão Oliver.",
-    "Quem escreveu 'A Metamorfose'?": "Franz Kafka escreveu 'A Metamorfose' em 1915, uma novela que narra a transformação de Gregor Samsa em um inseto, explorando temas de alienação e identidade.",
-    "Qual é a obra mais famosa de William Shakespeare?": "'Romeu e Julieta' é a peça mais conhecida de William Shakespeare, escrita no século XVI, que narra a trágica história de amor entre dois jovens de famílias rivais.",
-    "Quem é o autor de 'Cem Anos de Solidão'?": "Gabriel García Márquez, um dos principais autores do realismo mágico, publicou 'Cem Anos de Solidão' em 1967, explorando a história da família Buendía na fictícia Macondo.",
-    "Qual é o estilo literário característico de Clarice Lispector?": "Clarice Lispector é conhecida pelo modernismo e pela introspecção em suas obras, que frequentemente exploram a psicologia de seus personagens, como em 'A Hora da Estrela'.",
-    "Quem escreveu 'A Moreninha'?": "Joaquim Manuel de Macedo publicou 'A Moreninha' em 1844, considerado o primeiro romance romântico da literatura brasileira, que explora temas de amor e devoção.",
-    "Qual é a obra mais famosa de F. Scott Fitzgerald?": "'O Grande Gatsby', publicado em 1925, é a obra mais famosa de Fitzgerald, que retrata o sonho americano e a decadência da sociedade da década de 1920.",
-    "Quem é o autor de 'Moby Dick'?": "Herman Melville escreveu 'Moby Dick' em 1851, um romance que narra a obsessão do capitão Ahab em capturar uma baleia branca, simbolizando a luta entre o homem e a natureza.",
-    "Qual é o tema central de 'O Apanhador no Campo de Centeio'?": "Escrito por J.D. Salinger em 1951, o romance aborda a busca pela identidade e a alienação juvenil através da perspectiva de Holden Caulfield.",
-    "Quem escreveu 'A Peste'?": "Albert Camus publicou 'A Peste' em 1947, uma alegoria sobre a ocupação nazista na França, que narra a luta da população de Oran contra uma epidemia devastadora.",
-    "Qual é a principal obra de Gabriel Garcia Marquez?": "'Cem Anos de Solidão' é a obra-prima de Gabriel García Márquez, que entrelaça realismo mágico e a história da família Buendía em Macondo.",
-    "Quem é o autor de 'Orgulho e Preconceito'?": "Jane Austen escreveu 'Orgulho e Preconceito' em 1813, uma crítica social que explora as questões de classe e o casamento na Inglaterra do século XIX.",
-    "Qual livro famoso começa com a frase 'Todas as famílias felizes são iguais'?": "A famosa frase inicial é de 'Anna Kariênina', escrito por Liev Tolstói em 1877, que explora a complexidade das relações humanas.",
-    "Quem escreveu 'O Sol é Para Todos'?": "Harper Lee publicou 'O Sol é Para Todos' em 1960, um romance que aborda o racismo e a injustiça no sul dos Estados Unidos através dos olhos de uma criança.",
-    "Qual é a obra mais conhecida de Mark Twain?": "'As Aventuras de Tom Sawyer' é a obra mais famosa de Mark Twain, publicada em 1876, que narra as travessuras de um garoto no rio Mississippi.",
-    "Quem é o autor de 'O Senhor dos Anéis'?": "J.R.R. Tolkien é o autor de 'O Senhor dos Anéis', uma saga épica publicada entre 1954 e 1955, que narra a luta entre o bem e o mal na Terra Média.",
-    "Qual é a temática central de 'Frankenstein'?": "Escrito por Mary Shelley em 1818, 'Frankenstein' explora os limites da ciência e as consequências da ambição humana através da história de Victor Frankenstein e sua criação.",
-    "Quem escreveu 'O Diário de Anne Frank'?": "Anne Frank escreveu seu diário durante a Segunda Guerra Mundial, documentando sua vida escondida dos nazistas, que foi publicado postumamente em 1947.",
-    "Qual é a obra-prima de Dostoiévski?": "'Crime e Castigo', publicado em 1866, é uma das obras mais importantes de Fiódor Dostoiévski, que aborda a moralidade e a psicologia de Raskólnikov após cometer um assassinato.",
-    "Quem é o autor de 'A Revolução dos Bichos'?": "George Orwell escreveu 'A Revolução dos Bichos' em 1945, uma fábula política que critica o totalitarismo e a corrupção do ideal socialista.",
-    "Qual é a obra que retrata a vida de um jovem negro em Nova York, escrita por James Baldwin?": "'Se Esta Rua Falasse' é a obra de James Baldwin, publicada em 1974, que aborda questões de raça e identidade na sociedade americana.",
-    "Quem escreveu 'Os Irmãos Karamazov'?": "Fiódor Dostoiévski publicou 'Os Irmãos Karamazov' em 1880, um romance filosófico que explora questões de fé, dúvida e moralidade através da história da família Karamazov.",
-    "Qual é a principal obra de Virginia Woolf?": "'Mrs. Dalloway', publicada em 1925, é uma obra fundamental de Virginia Woolf, que explora a consciência e a percepção do tempo em um único dia na vida de Clarissa Dalloway.",
-    "Quem é o autor de 'O Velho e o Mar'?": "Ernest Hemingway escreveu 'O Velho e o Mar' em 1952, uma novela que narra a luta de um pescador idoso contra um marlim gigante, simbolizando a perseverança.",
-    "Qual romance é considerado uma das principais obras do realismo mágico?": "'Cem Anos de Solidão', de Gabriel García Márquez, é um dos principais exemplos de realismo mágico, mesclando o cotidiano e o fantástico na história da família Buendía.",
-    "Quem escreveu 'A Casa dos Espíritos'?": "Isabel Allende publicou 'A Casa dos Espíritos' em 1982, um romance que narra a história de várias gerações de uma família chilena, mesclando realismo mágico e política.",
-    "Qual é o tema de 'A Metamorfose' de Kafka?": "'A Metamorfose', escrita por Franz Kafka, explora a alienação e a transformação, seguindo a vida de Gregor Samsa após se tornar um inseto.",
-    "Quem é o autor de 'O Morro dos Ventos Uivantes'?": "Emily Brontë escreveu 'O Morro dos Ventos Uivantes' em 1847, um romance gótico que narra a tumultuada relação entre Heathcliff e Catherine Earnshaw.",
-    "Qual é a obra de T.S. Eliot que é considerada um poema épico moderno?": "'A Terra Baldia', publicada em 1922, é considerada uma das grandes obras modernas de T.S. Eliot, abordando a desilusão pós-Primeira Guerra Mundial.",
-    "Quem escreveu 'O Conto da Aia'?": "Margaret Atwood escreveu 'O Conto da Aia' em 1985, uma distopia que retrata uma sociedade totalitária onde as mulheres são subjugadas e utilizadas para reprodução.",
-    "Qual é a obra mais famosa de Shakespare?":"A obra mais famosa do grande Shakespare se chama Hamlet."
+    "Qual é a obra mais famosa de Shakespeare?": "A obra mais famosa do grande Shakespeare se chama Hamlet.",
+    # Adicione mais perguntas e respostas aqui
 }
 
 
@@ -46,7 +14,9 @@ def responder_pergunta(pergunta):
     if resposta:
         return resposta
     else:
-        return f"Não encontrei uma resposta para sua pergunta. Aqui está uma busca no Google: https://www.google.com/search?q={pergunta}"
+        mensagem = f"Não encontrei uma resposta para sua pergunta. Abrindo uma busca no Google..."
+        webbrowser.open(f"https://www.google.com/search?q={pergunta}")  # Abrir busca no Google
+        return mensagem
 
 def exibir_menu():
     print("Bem-vindo ao programa de perguntas sobre literatura!")
@@ -76,8 +46,10 @@ def main():
         elif escolha == '2':
             mostrar_ajuda()
         elif escolha == '3':
-            print("Obrigado por usar o programa! Até logo.")
-            break
+            confirmacao = input("Tem certeza que deseja sair? (s/n): ")
+            if confirmacao.lower() == 's':
+                print("Obrigado por usar o programa! Até logo.")
+                break
         else:
             print("Opção inválida. Tente novamente.")
 
